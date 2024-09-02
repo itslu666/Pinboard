@@ -1,0 +1,3 @@
+pinboard [option]
+options:
+    -s, --standard  Show image in standard imageviewer
