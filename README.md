@@ -8,6 +8,12 @@ Pinboard is a simple Python Tkinter app that can pin your images on your desktop
 - Drag images across your screen
 - Zoom into images
 - Move images inside the window
+
+### TODO:
+- [ ] Add file import
+- [ ] Add resize window feature
+
+
 ---
 ### Installation
 You need to install the `tkinter` system package **and** `xclip` for X11 or `wl-clipboard` for Wayland before building:\
@@ -22,10 +28,12 @@ Arch: `sudo pacman -S tk wl-clipboard`
 `git clone https://github.com/itslu666/Pinboard.git`\
 `cd Pinboard`\
 `make`\
-`make clean`\
 \
 The executable will be in `dist` you can use it in there or move it to somewhere in your path. e.g.:\
-`sudo mv dist/pinboard /usr/bin/`
+`sudo mv dist/pinboard /usr/bin/`\
+\
+Optional cleaning (removes `dist` too):\
+`make clean`
 
 #### Manual:
 `git clone https://github.com/itslu666/Pinboard.git`\
@@ -39,6 +47,9 @@ The executable will be in `dist` you can use it in there or move it to somewhere
 
 ---
 ### Usage:
-`pinboard [option]`\
+`pinboard [option]`
 Tag |   Effect
 --  |   --
+-h, --help  |   Display help
+-s, --standard  | Open clipboard image in default image viewer
+--create-config |   Make config file (Warning: Overwrites current file if existing)
