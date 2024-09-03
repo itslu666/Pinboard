@@ -1,9 +1,9 @@
 # Pinboard
-Pinboard is a simple Python Tkinter app that can pin your images on your desktop.
+Pinboard is a simple Python Tkinter app that can pin your images to your desktop.
 
 ### Features
 - Pin images to desktop (duh)
-- Pin screenshots to desktop
+- Pin from clipboard to desktop
 - Change border / background color
 - Drag images across your screen
 - Zoom into images
@@ -13,6 +13,7 @@ Pinboard is a simple Python Tkinter app that can pin your images on your desktop
 - [ ] Add file import
 - [ ] Add resize window feature
 - [ ] Fix canvas bounds
+- [ ] Add setting to change add/close key
 
 
 ---
@@ -21,9 +22,13 @@ You need to install the `tkinter` system package **and** `xclip` for X11 or `wl-
 To see what XDG session you are running: `echo $XDG_SESSION_TYPE`
 
 X11:\
+Ubuntu/Debian: `sudo apt-get install python3-tk xclip`\
+Fedora: `sudo dnf install python3-tkinter xclip`\
 Arch: `sudo pacman -S tk xclip`
 
 Wayland:\
+Ubuntu/Debian: `sudo apt-get install python3-tk wl-clipboard`\
+Fedora: `sudo dnf install python3-tkinter wl-clipboard`\
 Arch: `sudo pacman -S tk wl-clipboard`
 #### Building:
 `git clone https://github.com/itslu666/Pinboard.git`\
@@ -57,3 +62,6 @@ Tag |   Effect
 --create-config |   Make config file (Warning: Overwrites current file if existing)
 
 For peak experience make a keyboard shortcut to execute `pinboard`
+
+Press `+` to add another image\
+Press `q` to close the selected image
