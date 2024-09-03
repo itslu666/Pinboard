@@ -1,5 +1,6 @@
 import tkinter as tk
 from PIL import ImageTk, Image
+from modules import settings_loader
 
 def make_window(wid, hgt, img):
     # make window
@@ -19,7 +20,7 @@ def make_window(wid, hgt, img):
     # make image
     img_tk = ImageTk.PhotoImage(img)
 
-    canvas = tk.Canvas(root, width=wid, height=hgt)
+    canvas = tk.Canvas(root, width=wid, height=hgt, highlightbackground="black")
     canvas.pack(fill=tk.BOTH, expand=True)
     canvas.create_image(0, 0, anchor=tk.NW, image=img_tk)
     canvas.img = img
@@ -39,6 +40,8 @@ def make_window(wid, hgt, img):
     canvas.bind("<ButtonPress-2>", lambda e: start_move(e, canvas))
     canvas.bind("<B2-Motion>", lambda e: move_image(e, canvas))
 
+    # load settings
+    settings_loader.change_window(canvas)
     # show window
     root.mainloop()
 
@@ -59,6 +62,7 @@ def get_start(e, root):
 def zoom_in(e, canvas, img, og_size):
     current_width, current_height = canvas.img.size
 
+    # restrict resizing to 3 times the size
     if (current_width < 3 * og_size[0]) and (current_height < 3 * og_size[1]):
         # update the global image reference
         canvas.img = img.resize((int(canvas.img.width * 1.2), int(canvas.img.height * 1.2)), Image.LANCZOS)
