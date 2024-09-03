@@ -2,3 +2,5 @@ pinboard [option]
 options:
     -h, --help  Show this help
     -s, --standard  Show image in standard imageviewer
+
+    --config    Make config file
