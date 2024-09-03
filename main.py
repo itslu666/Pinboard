@@ -1,6 +1,6 @@
 from PIL import ImageGrab, Image
 import sys
-from modules import tkinter_manager
+from modules import tkinter_manager, image_handler
 import os
 import json
 
@@ -12,13 +12,9 @@ def main():
         arg = ""
 
     if arg == "":
-        img = ImageGrab.grabclipboard()
+        open_windows = [0]
+        tkinter_manager.make_window(open_windows)
 
-        if isinstance(img, Image.Image):
-            wid, hgt = img.size
-            tkinter_manager.make_window(wid, hgt, img)
-        else:
-            print("No image in clipboard.")
 
     elif "s" in arg or "--standard" in arg:
         # get image from clipboard
