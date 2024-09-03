@@ -5,7 +5,8 @@ import os
 import json
 
 def main():
-    if not os.path.isfile(os.path.expanduser("~") + "/.config/pinboard/settings.json"):
+    settings_file = os.path.expanduser("~") + "/.config/pinboard/settings.json"
+    if not os.path.isfile(settings_file):
         settings = {
                 "border_color": "black",
                 "background_color": "white"
@@ -41,7 +42,7 @@ def main():
             "background_color": "white"
         }
 
-        with open(os.path.expanduser("~") + "/.config/pinboard/settings.json", 'w') as file:
+        with open(settings_file, 'w') as file:
             json.dump(settings, file, indent=4)
 
     elif arg == "-h" or arg == "--help":
