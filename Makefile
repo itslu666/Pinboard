@@ -1,12 +1,22 @@
 PYTHON = python3
+PYTHON_VENV = venv
 PYINSTALLER = pyinstaller
-SRC_DIR = src
+SRC_DIR = .
 DIST_DIR = dist
 CONFIG_DIR = .config/pinboard
+REQUIREMENTS_FILE = requirements.txt
 
 EXECUTABLE_NAME = pinboard
 
-all: create_config_dir build_executable
+all: create_venv install_dependencies create_config_dir build_executable
+
+create_venv:
+	$(PYTHON) -m venv $(PYTHON_VENV)
+	@echo "Venv created"
+
+install_dependencies:
+	$(PYTHON_VENV)/bin/pip install -r $(REQUIREMENTS_FILE)
+	@echo "Dependencies installed."
 
 create_config_dir:
 	@mkdir -p $(CONFIG_DIR)
@@ -20,10 +30,11 @@ clean:
 	rm -rf $(DIST_DIR)
 	rm -rf build
 	rm -rf $(EXECUTABLE_NAME).spec
+	rm -rf $(PYTHON_VENV)
 	@echo "Cleaned up."
 
-uninstall:
+uninstall: clean
 	rm -rf $(CONFIG_DIR)
-	@echo ".config dir removed"
+	@echo "Uninstalled"
 
-.PHONY: all create_config_dir build_executable clean uninstall
+.PHONY: create_venv install_dependencies create_config_dir build_executable clean uninstall
