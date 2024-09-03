@@ -1,6 +1,7 @@
 import tkinter as tk
 from PIL import ImageTk, Image
 from modules import settings_loader, image_handler
+import sys
 
 def make_window(open_windows, win=None):
     wid, hgt, img = image_handler.get_image()
@@ -45,7 +46,7 @@ def on_close_window(window, open_windows):
     window.destroy()
     open_windows[0] -= 1
     if open_windows[0] == 0:
-        exit()
+        sys.exit()
 
 def move(root, e):
     x = root.winfo_pointerx() - root.start_x
