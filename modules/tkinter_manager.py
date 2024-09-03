@@ -31,8 +31,8 @@ def make_window(wid, hgt, img):
     root.bind("<B1-Motion>", lambda e: move(root, e, root.start_x, root.start_y))
     root.bind("<q>", lambda e: root.destroy())
 
-    canvas.bind('<4>', lambda e: zoom_in(e, canvas, img))
-    canvas.bind('<5>', lambda e: zoom_out(e, canvas, img))
+    canvas.bind('<4>', lambda e: zoom_in(e, canvas, img, img.size))
+    canvas.bind('<5>', lambda e: zoom_out(e, canvas, img, img.size))
 
     # show window
     root.mainloop()
@@ -51,28 +51,39 @@ def get_start(e, root):
     root.start_x = start_x
     root.start_y = start_y
 
-def zoom_in(e, canvas, img):
-    # Update the global image reference
-    canvas.img = img.resize((int(canvas.img.width * 1.2), int(canvas.img.height * 1.2)), Image.LANCZOS)
-    # Convert updated image to PhotoImage
-    img_tk = ImageTk.PhotoImage(canvas.img)
-    # Update the canvas with the new image
-    canvas.delete("all")
-    canvas.create_image(0, 0, anchor=tk.NW, image=img_tk)
-    # Keep a reference to avoid garbage collection
-    canvas.img_tk = img_tk
-    canvas.configure(scrollregion=canvas.bbox("all"))
+def zoom_in(e, canvas, img, og_size):
+    current_width, current_height = canvas.img.size
+
+    if (current_width <= 3 * og_size[0]) and (current_height <= 3 * og_size[1]):
+        # Update the global image reference
+        canvas.img = img.resize((int(canvas.img.width * 1.2), int(canvas.img.height * 1.2)), Image.LANCZOS)
+
+        # Convert updated image to PhotoImage
+        img_tk = ImageTk.PhotoImage(canvas.img)
+        # Update the canvas with the new image
+        canvas.delete("all")
+        canvas.create_image(0, 0, anchor=tk.NW, image=img_tk)
+        # Keep a reference to avoid garbage collection
+        canvas.img_tk = img_tk
+        canvas.configure(scrollregion=canvas.bbox("all"))
+    else:
+        print("limit reached")
 
 
 
-def zoom_out(e, canvas, img):
-    # Update the global image reference
-    canvas.img = img.resize((int(canvas.img.width * 0.9), int(canvas.img.height * 0.9)), Image.LANCZOS)
-    # Convert updated image to PhotoImage
-    img_tk = ImageTk.PhotoImage(canvas.img)
-    # Update the canvas with the new image
-    canvas.delete("all")
-    canvas.create_image(0, 0, anchor=tk.NW, image=img_tk)
-    # Keep a reference to avoid garbage collection
-    canvas.img_tk = img_tk
-    canvas.configure(scrollregion=canvas.bbox("all"))
+def zoom_out(e, canvas, img, og_size):
+    current_width, current_height = canvas.img.size
+
+    if (current_width != og_size[0]) and (current_height != og_size[1]):
+        # Update the global image reference
+        canvas.img = img.resize((int(canvas.img.width * 0.9), int(canvas.img.height * 0.9)), Image.LANCZOS)
+        # Convert updated image to PhotoImage
+        img_tk = ImageTk.PhotoImage(canvas.img)
+        # Update the canvas with the new image
+        canvas.delete("all")
+        canvas.create_image(0, 0, anchor=tk.NW, image=img_tk)
+        # Keep a reference to avoid garbage collection
+        canvas.img_tk = img_tk
+        canvas.configure(scrollregion=canvas.bbox("all"))
+    else:
+        print("og size reached")
