@@ -36,6 +36,9 @@ def make_window(wid, hgt, img):
     canvas.bind('<4>', lambda e: zoom_in(e, canvas, img, img.size))
     canvas.bind('<5>', lambda e: zoom_out(e, canvas, img, img.size))
 
+    canvas.bind("<ButtonPress-2>", lambda e: start_move(e, canvas))
+    canvas.bind("<B2-Motion>", lambda e: move_image(e, canvas))
+
     # show window
     root.mainloop()
 
@@ -106,3 +109,27 @@ def zoom_out(e, canvas, img, og_size):
         canvas.configure(scrollregion=canvas.bbox("all"))
     else:
         print("Original size reached")
+
+
+def move_image(e, canvas):
+    # calculate new image coordinates
+    dx = e.x - canvas.last_x
+    dy = e.y - canvas.last_y
+
+    # update image position
+    canvas.img_x += dx
+    canvas.img_y += dy
+
+    # redraw the image
+    canvas.delete("all")
+    canvas.create_image(canvas.img_x, canvas.img_y, anchor=tk.NW, image=canvas.img_tk)
+
+    # update the last mouse position
+    canvas.last_x = e.x
+    canvas.last_y = e.y
+    
+
+def start_move(e, canvas):
+    # initialize mouse position for moving the image
+    canvas.last_x = e.x
+    canvas.last_y = e.y
