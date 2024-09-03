@@ -1,4 +1,5 @@
 from PIL import ImageGrab, Image
+import sys
 
 def get_image():
     img = ImageGrab.grabclipboard()
@@ -6,4 +7,4 @@ def get_image():
         return img.size[0], img.size[1], img
     else:
         print("No image in clipboard")
-        exit()
+        sys.exit()

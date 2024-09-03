@@ -12,6 +12,7 @@ Pinboard is a simple Python Tkinter app that can pin your images on your desktop
 ### TODO:
 - [ ] Add file import
 - [ ] Add resize window feature
+- [ ] Fix canvas bounds
 
 
 ---
@@ -43,7 +44,8 @@ Optional cleaning (removes `dist` too):\
 
 ---
 ### Uninstalling
-`make uninstall`
+`make uninstall`\
+(don't forget to remove the executable in /usr/bin/pinboard if you moved it)
 
 ---
 ### Usage:
@@ -53,3 +55,5 @@ Tag |   Effect
 -h, --help  |   Display help
 -s, --standard  | Open clipboard image in default image viewer
 --create-config |   Make config file (Warning: Overwrites current file if existing)
+
+For peak experience make a keyboard shortcut to execute `pinboard`
