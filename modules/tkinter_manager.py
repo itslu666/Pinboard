@@ -24,6 +24,8 @@ def make_window(wid, hgt, img):
     canvas.create_image(0, 0, anchor=tk.NW, image=img_tk)
     canvas.img = img
     canvas.img_tk = img_tk
+    canvas.img_x = 0
+    canvas.img_y = 0
     canvas.configure(scrollregion=canvas.bbox("all"))
 
     # binds
@@ -54,36 +56,53 @@ def get_start(e, root):
 def zoom_in(e, canvas, img, og_size):
     current_width, current_height = canvas.img.size
 
-    if (current_width <= 3 * og_size[0]) and (current_height <= 3 * og_size[1]):
-        # Update the global image reference
+    if (current_width < 3 * og_size[0]) and (current_height < 3 * og_size[1]):
+        # update the global image reference
         canvas.img = img.resize((int(canvas.img.width * 1.2), int(canvas.img.height * 1.2)), Image.LANCZOS)
 
-        # Convert updated image to PhotoImage
+        # calc new pos to keep pointer centered
+        canvas.img_x -= (e.x - canvas.canvasx(0)) * 0.2
+        canvas.img_y -= (e.y - canvas.canvasy(0)) * 0.2
+
+        # make photoimage
         img_tk = ImageTk.PhotoImage(canvas.img)
-        # Update the canvas with the new image
+        # update the canvas with the new image
         canvas.delete("all")
-        canvas.create_image(0, 0, anchor=tk.NW, image=img_tk)
-        # Keep a reference to avoid garbage collection
+        canvas.create_image(canvas.img_x, canvas.img_y, anchor=tk.NW, image=img_tk)
+
+        # keep a reference to avoid garbage collection
         canvas.img_tk = img_tk
         canvas.configure(scrollregion=canvas.bbox("all"))
     else:
-        print("limit reached")
-
-
+        print("Zoom limit reached")
 
 def zoom_out(e, canvas, img, og_size):
     current_width, current_height = canvas.img.size
 
-    if (current_width != og_size[0]) and (current_height != og_size[1]):
-        # Update the global image reference
-        canvas.img = img.resize((int(canvas.img.width * 0.9), int(canvas.img.height * 0.9)), Image.LANCZOS)
-        # Convert updated image to PhotoImage
+    if (current_width > og_size[0]) and (current_height > og_size[1]):
+        # update global image reference
+        new_width = int(canvas.img.width * 0.8)
+        new_height = int(canvas.img.height * 0.8)
+
+        # the new size does not go below the original size
+        new_width = max(new_width, og_size[0])
+        new_height = max(new_height, og_size[1])
+
+        canvas.img = img.resize((new_width, new_height), Image.LANCZOS)
+
+        # calc new pos to keep pointer centered
+        canvas.img_x += (e.x - canvas.canvasx(0)) * 0.2
+        canvas.img_y += (e.y - canvas.canvasy(0)) * 0.2
+
+        # make photoimage
         img_tk = ImageTk.PhotoImage(canvas.img)
-        # Update the canvas with the new image
+
+        # update canvas
         canvas.delete("all")
-        canvas.create_image(0, 0, anchor=tk.NW, image=img_tk)
-        # Keep a reference to avoid garbage collection
+        canvas.create_image(canvas.img_x, canvas.img_y, anchor=tk.NW, image=img_tk)
+
+        # keep a reference to avoid garbage collection
         canvas.img_tk = img_tk
         canvas.configure(scrollregion=canvas.bbox("all"))
     else:
-        print("og size reached")
+        print("Original size reached")
