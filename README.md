@@ -56,7 +56,7 @@ Arch:
     cd Pinboard
     make
 \
-The executable will be in `dist` you can use it in there or move it to somewhere in your path. e.g.:
+The executable will be in `dist` you can use it in there or move it to somewhere in your PATH. e.g.:
         
     sudo mv dist/pinboard /usr/bin/
 \
@@ -76,6 +76,7 @@ Option |   Effect
 --  |   --
 -h, --help  |   Display help
 -s, --standard  | Open clipboard image in default image viewer
+-p, --pin   |   Pin image to desktop (like if you don't pass arg)
 -f, --file  |   Select a file to display (need to specify -p or -s)
 --create-config |   Make config file (Warning: Overwrites current file if existing)
 

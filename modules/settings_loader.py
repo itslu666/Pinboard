@@ -12,5 +12,6 @@ def change_window(canvas, root):
 
     canvas.config(highlightbackground=settings['border_color'])
     canvas.config(bg=settings['background_color'])
+
     root.attributes("-topmost", settings['always_on_top'])
-    
+    root.configure(background=settings['background_color'])
