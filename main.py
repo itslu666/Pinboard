@@ -16,8 +16,22 @@ def main():
         with open(settings_file, 'w') as file:
             json.dump(settings, file, indent=4)
 
+    if "-f" in sys.argv or "--file" in sys.argv:
+        path = filedialog.askopenfilename(
+            title="Choose an image",
+            filetypes=[("Images", "*.jpg *.jpeg *.png *.gif *.bmp")]
+        )
+        if path:
+            img = Image.open(path)
+
+            if "-p" in sys.argv:
+                tkinter_manager.make_window([0], img.size[0], img.size[1], img)
+
+            if "-s" in sys.argv:
+                img.show()
+
     # handle args
-    if "-s" in sys.argv or "--standard" in sys.argv and "-f" not in sys.argv or "--file" not in sys.argv:
+    if ("-s" in sys.argv or "--standard" in sys.argv) and ("-f" not in sys.argv and "--file" not in sys.argv):
         # get img and show in default app
         _, _, img = image_handler.get_image()
         img.show()
@@ -28,12 +42,9 @@ def main():
         tkinter_manager.make_window(open_windows, wid, hgt, img)
 
 
-    if "-f" in sys.argv or "--file" in sys.argv:
-        ...
-
 
     # OTHER
-    elif arg == "--create-config":
+    if "--create-config" in sys.argv:
         settings = {
             "border_color": "black",
             "background_color": "white"
@@ -42,7 +53,7 @@ def main():
         with open(settings_file, 'w') as file:
             json.dump(settings, file, indent=4)
 
-    elif arg == "-h" or arg == "--help":
+    if "-h" in sys.argv or "--help" in sys.argv:
         with open("usage.txt", 'r') as file:
             print(file.read())
 
