@@ -61,12 +61,14 @@ Tag |   Effect
 --  |   --
 -h, --help  |   Display help
 -s, --standard  | Open clipboard image in default image viewer
+-f, --file  |   Select a file to display (need to specify -p or -s)
 --create-config |   Make config file (Warning: Overwrites current file if existing)
 
 For peak experience make a keyboard shortcut to execute `pinboard`
 
-Drag the image where you want.\
-Pan the image with mousewheel click.\
-Zoom the image with scroll.\
-Press `+` to add another image\
-Press `q` to close the selected image
+Drag the image on your display\
+Pan the image with mouswheel click\
+Zoom the image with scroll
+
+Press + to add another image from clipboard\
+Press q to close the selected image

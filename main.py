@@ -23,12 +23,13 @@ def main():
         )
         if path:
             img = Image.open(path)
+            
+            if "-s" in sys.argv:
+                img.show()
 
             if "-p" in sys.argv:
                 tkinter_manager.make_window([0], img.size[0], img.size[1], img)
 
-            if "-s" in sys.argv:
-                img.show()
 
     # handle args
     if ("-s" in sys.argv or "--standard" in sys.argv) and ("-f" not in sys.argv and "--file" not in sys.argv):
