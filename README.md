@@ -71,7 +71,7 @@ Optional cleaning (removes `dist` too):\
 ---
 ### Usage:
     pinboard [option]
-Tag |   Effect
+Option |   Effect
 --  |   --
 -h, --help  |   Display help
 -s, --standard  | Open clipboard image in default image viewer

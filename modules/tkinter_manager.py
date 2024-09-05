@@ -43,9 +43,30 @@ def make_window(open_windows, wid, hgt, img, win=None):
     canvas.bind("<ButtonPress-2>", lambda e: start_move(e, canvas))
     canvas.bind("<B2-Motion>", lambda e: move_image(e, canvas))
 
+    root.bind("<ButtonPress-3>", lambda e: start_resize(e, root))
+    root.bind("<B3-Motion>", lambda e: perform_resize(e, root, canvas, img))
+
     settings_loader.change_window(canvas, root)
     if win.winfo_name() == 'tk':
         win.mainloop()
+
+def start_resize(e, root):
+    root.start_x, root.start_y = e.x_root, e.y_root
+    root.start_width, root.start_height = root.winfo_width(), root.winfo_height()
+
+def perform_resize(e, root, canvas, img):
+    new_width = root.start_width + (e.x_root - root.start_x)
+    new_height = root.start_height + (e.y_root - root.start_y)
+    
+    if new_width > 100 and new_height > 100:
+        root.geometry(f"{new_width}x{new_height}")
+        canvas.config(width=new_width, height=new_height)
+
+        # image resizing
+        canvas.img = img.resize((int(new_width), int(new_height)), Image.LANCZOS)
+        canvas.img_tk = ImageTk.PhotoImage(canvas.img)
+        canvas.delete("all")
+        canvas.create_image(canvas.img_x, canvas.img_y, anchor=tk.NW, image=canvas.img_tk)
 
 def on_close_window(window, open_windows):
     window.destroy()
