@@ -15,7 +15,7 @@ Pinboard is a simple Python Tkinter app that can pin your images to your desktop
 - [ ] Fix canvas bounds
 - [ ] Add setting to change add/close key
 - [ ] Add text to desktop
-- [ ] Add disable always on top setting
+- [x] Add disable always on top setting
 
 
 ---
@@ -72,3 +72,11 @@ Zoom the image with scroll
 
 Press + to add another image from clipboard\
 Press q to close the selected image
+
+---
+### Settings:
+Option  |   Value   |   Effect
+--  |   --  |   --
+border_color    |   any color   |   Changes the color of the pin border
+background_color    |   any color   |   Changes the background color when image panned out of bounds
+always_on_top   |   True/False  |   wether the pin should be always on top or not

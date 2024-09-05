@@ -7,8 +7,10 @@ def load_settings():
 
     return settings
 
-def change_window(canvas):
+def change_window(canvas, root):
     settings = load_settings()
 
     canvas.config(highlightbackground=settings['border_color'])
     canvas.config(bg=settings['background_color'])
+    root.attributes("-topmost", settings['always_on_top'])
+    

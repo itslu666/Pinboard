@@ -48,11 +48,13 @@ def main():
     if "--create-config" in sys.argv:
         settings = {
             "border_color": "black",
-            "background_color": "white"
+            "background_color": "white",
+            "always_on_top": True
         }
 
         with open(settings_file, 'w') as file:
             json.dump(settings, file, indent=4)
+        print(f"Made new config file in {settings_file}")
 
     if "-h" in sys.argv or "--help" in sys.argv:
         with open("usage.txt", 'r') as file:

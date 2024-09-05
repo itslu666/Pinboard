@@ -16,7 +16,7 @@ def make_window(open_windows, wid, hgt, img, win=None):
         root.wm_attributes('-type', 'splash')
     else:
         root.overrideredirect(True)
-        
+
     root.attributes('-topmost', True)
     
     x, y = root.winfo_screenwidth() - wid - 30, 30
@@ -43,7 +43,7 @@ def make_window(open_windows, wid, hgt, img, win=None):
     canvas.bind("<ButtonPress-2>", lambda e: start_move(e, canvas))
     canvas.bind("<B2-Motion>", lambda e: move_image(e, canvas))
 
-    settings_loader.change_window(canvas)
+    settings_loader.change_window(canvas, root)
     if win.winfo_name() == 'tk':
         win.mainloop()
 
