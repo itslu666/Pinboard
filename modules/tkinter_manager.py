@@ -2,6 +2,7 @@ import tkinter as tk
 from PIL import ImageTk, Image
 from modules import settings_loader, image_handler
 import sys
+import platform
 
 def make_window(open_windows, wid, hgt, img, win=None):
     win = win or tk.Tk()
@@ -10,7 +11,12 @@ def make_window(open_windows, wid, hgt, img, win=None):
 
     root = tk.Toplevel()
     open_windows[0] += 1
-    root.wm_attributes('-type', 'splash')
+    # check if windows or linux
+    if platform.system() == "Linux":
+        root.wm_attributes('-type', 'splash')
+    else:
+        root.overrideredirect(True)
+        
     root.attributes('-topmost', True)
     
     x, y = root.winfo_screenwidth() - wid - 30, 30
