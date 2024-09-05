@@ -52,8 +52,10 @@ def make_window(open_windows, wid, hgt, img, win=None):
 
     # resizing
     root.bind("<ButtonPress-3>", lambda e: start_resize(e, root))
-    root.bind("<B3-Motion>", lambda e: perform_resize(e, root, canvas, img))
+    root.bind("<B3-Motion>", lambda e: perform_resize(e, root, canvas, img, False))
     root.bind("<b>", lambda e: reset_size(e, root, canvas, img, img.size))
+    root.bind("<KeyPress-comma>", lambda e: perform_resize(e, root, canvas, img, ","))
+    root.bind("<KeyPress-period>", lambda e: perform_resize(e, root, canvas, img, "."))
 
     settings_loader.change_window(canvas, root)
     if win.winfo_name() == 'tk':
@@ -63,9 +65,18 @@ def start_resize(e, root):
     root.start_x, root.start_y = e.x_root, e.y_root
     root.start_width, root.start_height = root.winfo_width(), root.winfo_height()
 
-def perform_resize(e, root, canvas, img):
-    new_width = root.start_width + (e.x_root - root.start_x)
-    new_height = root.start_height + (e.y_root - root.start_y)
+def perform_resize(e, root, canvas, img, pressed_key):
+    if pressed_key:
+        root.start_width, root.start_height = root.winfo_width(), root.winfo_height()
+        if pressed_key == ",":
+            new_width = int(root.start_width * 0.8)
+            new_height = int(root.start_height * 0.8)
+        elif pressed_key == ".":
+            new_width = int(root.start_width * 1.2)
+            new_height = int(root.start_height * 1.2)
+    else:
+        new_width = root.start_width + (e.x_root - root.start_x)
+        new_height = root.start_height + (e.y_root - root.start_y)
     
     if new_width > 100 and new_height > 100:
         root.geometry(f"{new_width}x{new_height}")
