@@ -1,13 +1,14 @@
 # Pinboard
-Pinboard is a simple Python Tkinter app that can pin your images to your desktop.
+Pinboard is a simple Python Tkinter app that can pin your images to your desktop and more.
 
 ### Features
-- Pin images to desktop (duh)
+- Pin images to desktop
 - Pin from clipboard to desktop
+- Open image in image viewer from clipboard
 - Change border / background color
 - Drag images across your screen
 - Zoom into images
-- Move images inside the window
+- Pan images inside the window
 
 ### TODO:
 - [x] Add file import
