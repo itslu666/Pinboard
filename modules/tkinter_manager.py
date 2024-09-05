@@ -3,8 +3,7 @@ from PIL import ImageTk, Image
 from modules import settings_loader, image_handler
 import sys
 
-def make_window(open_windows, win=None):
-    wid, hgt, img = image_handler.get_image()
+def make_window(open_windows, wid, hgt, img, win=None):
     win = win or tk.Tk()
     if win.winfo_name() == 'tk':
         win.withdraw()
@@ -31,7 +30,7 @@ def make_window(open_windows, win=None):
     root.bind("<ButtonPress-1>", lambda e: get_start(e, root))
     root.bind("<B1-Motion>", lambda e: move(root, e))
     root.bind("<q>", lambda e: on_close_window(root, open_windows))
-    root.bind("<KeyPress-plus>", lambda e: make_window(open_windows, win))
+    root.bind("<KeyPress-plus>", lambda e: make_window(open_windows, *image_handler.get_image(), win))
     
     canvas.bind('<4>', lambda e: zoom_in(e, canvas, img, img.size))
     canvas.bind('<5>', lambda e: zoom_out(e, canvas, img, img.size))
