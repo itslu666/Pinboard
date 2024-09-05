@@ -22,6 +22,9 @@ def make_window(open_windows, wid, hgt, img, win=None):
     x, y = root.winfo_screenwidth() - wid - 30, 30
     root.geometry(f"{wid}x{hgt}+{x}+{y}")
 
+    root.initial_width = wid
+    root.initial_height = hgt
+
     img_tk = ImageTk.PhotoImage(img)
     canvas = tk.Canvas(root, width=wid, height=hgt, highlightbackground="black")
     canvas.pack(fill=tk.BOTH, expand=True)
@@ -33,18 +36,24 @@ def make_window(open_windows, wid, hgt, img, win=None):
     canvas.configure(scrollregion=canvas.bbox("all"))
 
     # Bind events
+    # moving
     root.bind("<ButtonPress-1>", lambda e: get_start(e, root))
     root.bind("<B1-Motion>", lambda e: move(root, e))
+
+    # close/open
     root.bind("<q>", lambda e: on_close_window(root, open_windows))
     root.bind("<KeyPress-plus>", lambda e: make_window(open_windows, *image_handler.get_image(), win))
     
+    # zoom/panning
     canvas.bind('<4>', lambda e: zoom_in(e, canvas, img, img.size))
     canvas.bind('<5>', lambda e: zoom_out(e, canvas, img, img.size))
     canvas.bind("<ButtonPress-2>", lambda e: start_move(e, canvas))
     canvas.bind("<B2-Motion>", lambda e: move_image(e, canvas))
 
+    # resizing
     root.bind("<ButtonPress-3>", lambda e: start_resize(e, root))
     root.bind("<B3-Motion>", lambda e: perform_resize(e, root, canvas, img))
+    root.bind("<b>", lambda e: reset_size(e, root, canvas, img, img.size))
 
     settings_loader.change_window(canvas, root)
     if win.winfo_name() == 'tk':
@@ -67,6 +76,14 @@ def perform_resize(e, root, canvas, img):
         canvas.img_tk = ImageTk.PhotoImage(canvas.img)
         canvas.delete("all")
         canvas.create_image(canvas.img_x, canvas.img_y, anchor=tk.NW, image=canvas.img_tk)
+
+def reset_size(e, root, canvas, img, og_size):
+    canvas.img = img.resize((og_size[0], og_size[1]), Image.LANCZOS)
+
+    canvas.img_tk = ImageTk.PhotoImage(canvas.img)
+    canvas.delete("all")
+    canvas.create_image(canvas.img_x, canvas.img_y, anchor=tk.NW, image=canvas.img_tk)
+    root.geometry(f"{root.initial_width}x{root.initial_height}")
 
 def on_close_window(window, open_windows):
     window.destroy()
