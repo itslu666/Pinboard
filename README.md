@@ -24,40 +24,53 @@ Pinboard is a simple Python Tkinter app that can pin your images to your desktop
 You need to install the `tkinter` system package **and** `xclip` for X11 or `wl-clipboard` for Wayland before building:\
 To see what XDG session you are running: `echo $XDG_SESSION_TYPE`
 
-X11:\
-Ubuntu/Debian: `sudo apt-get install python3-tk xclip`\
-Fedora: `sudo dnf install python3-tkinter xclip`\
-Arch: `sudo pacman -S tk xclip`
+#### X11:
+Ubuntu/Debian: 
 
-Wayland:\
-Ubuntu/Debian: `sudo apt-get install python3-tk wl-clipboard`\
-Fedora: `sudo dnf install python3-tkinter wl-clipboard`\
-Arch: `sudo pacman -S tk wl-clipboard`
+    sudo apt-get install python3-tk xclip
+
+Fedora:
+
+    sudo dnf install python3-tkinter xclip
+
+Arch: 
+    
+    sudo pacman -S tk xclip
+
+#### Wayland:
+Ubuntu/Debian: 
+
+    sudo apt-get install python3-tk wl-clipboard
+
+Fedora: 
+
+    sudo dnf install python3-tkinter wl-clipboard
+
+Arch:
+
+    sudo pacman -S tk wl-clipboard
+
 #### Building:
-`git clone https://github.com/itslu666/Pinboard.git`\
-`cd Pinboard`\
-`make`\
+    git clone https://github.com/itslu666/Pinboard.git
+    cd Pinboard
+    make
 \
-The executable will be in `dist` you can use it in there or move it to somewhere in your path. e.g.:\
-`sudo mv dist/pinboard /usr/bin/`\
+The executable will be in `dist` you can use it in there or move it to somewhere in your path. e.g.:
+        
+    sudo mv dist/pinboard /usr/bin/
 \
 Optional cleaning (removes `dist` too):\
-`make clean`
 
-#### Manual:
-`git clone https://github.com/itslu666/Pinboard.git`\
-`mkdir ~/.config/pinboard`\
-`python main.py --config`\
-`python main.py [option]`
+    make clean
 
 ---
 ### Uninstalling
-`make uninstall`\
+    make uninstall
 (don't forget to remove the executable in /usr/bin/pinboard if you moved it)
 
 ---
 ### Usage:
-`pinboard [option]`
+    pinboard [option]
 Tag |   Effect
 --  |   --
 -h, --help  |   Display help
@@ -68,11 +81,11 @@ Tag |   Effect
 For peak experience make a keyboard shortcut to execute `pinboard`
 
 Drag the image on your display\
-Pan the image with mouswheel click\
-Zoom the image with scroll
+Pan the image with `mouswheel click`\
+Zoom the image with `scroll`
 
-Press + to add another image from clipboard\
-Press q to close the selected image
+Press `+` to add another image from clipboard\
+Press `q` to close the selected image
 
 ---
 ### Settings:
