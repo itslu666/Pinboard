@@ -9,10 +9,11 @@ Pinboard is a simple Python Tkinter app that can pin your images to your desktop
 - Drag images across your screen
 - Zoom into images
 - Pan images inside the window
+- Resize images
 
 ### TODO:
 - [x] Add file import
-- [ ] Add resize window feature
+- [x] Add resize window feature
 - [ ] Fix canvas bounds
 - [ ] Add setting to change add/close key
 - [ ] Add text to desktop
@@ -59,7 +60,7 @@ The executable will be in `dist` you can use it in there or move it to somewhere
         
     sudo mv dist/pinboard /usr/bin/
 \
-Optional cleaning (removes `dist` too):\
+Optional cleaning (removes `dist` too):
 
     make clean
 
@@ -82,10 +83,14 @@ For peak experience make a keyboard shortcut to execute `pinboard`
 
 Drag the image on your display\
 Pan the image with `mouswheel click`\
-Zoom the image with `scroll`
+Zoom the image with `scroll`\
+Resize the image with `right click and drag`
 
 Press `+` to add another image from clipboard\
-Press `q` to close the selected image
+Press `q` to close the selected image\
+Press `,` to proportionally decrease image size\
+Press `.` to proportionally increase image size\
+Press `b` to reset the image size
 
 ---
 ### Settings:
@@ -94,3 +99,5 @@ Option  |   Value   |   Effect
 border_color    |   any color   |   Changes the color of the pin border
 background_color    |   any color   |   Changes the background color when image panned out of bounds
 always_on_top   |   True/False  |   wether the pin should be always on top or not
+
+Settings file is in `~/.config/pinboard/settings.json` after building

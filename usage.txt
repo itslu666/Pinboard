@@ -10,6 +10,10 @@ options:
 Drag the image on your display
 Pan the image with mouswheel click
 Zoom the image with scroll
+Resize the image with right click and drag
 
 Press + to add another image from clipboard
 Press q to close the selected image
+Press , to proportionally decrease image size
+Press . to proportionally increase image size
+Press b to reset the image size
