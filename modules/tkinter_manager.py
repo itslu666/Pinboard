@@ -41,8 +41,9 @@ def make_window(open_windows, wid, hgt, img, win=None):
     root.bind("<B1-Motion>", lambda e: move(root, e))
 
     # close/open
-    root.bind("<q>", lambda e: on_close_window(root, open_windows))
-    root.bind("<KeyPress-plus>", lambda e: make_window(open_windows, *image_handler.get_image(), win))
+    settings = settings_loader.load_settings()
+    root.bind(f"<{settings['close_key']}>", lambda e: on_close_window(root, open_windows))
+    root.bind(f"<{settings['open_key']}>", lambda e: make_window(open_windows, *image_handler.get_image(), win))
     
     # zoom/panning
     canvas.bind('<4>', lambda e: zoom_in(e, canvas, img, img.size))
@@ -53,7 +54,7 @@ def make_window(open_windows, wid, hgt, img, win=None):
     # resizing
     root.bind("<ButtonPress-3>", lambda e: start_resize(e, root))
     root.bind("<B3-Motion>", lambda e: perform_resize(e, root, canvas, img, False))
-    root.bind("<b>", lambda e: reset_size(e, root, canvas, img, img.size))
+    root.bind(f"<{settings['reset_size_key']}>", lambda e: reset_size(e, root, canvas, img, img.size))
     root.bind("<KeyPress-comma>", lambda e: perform_resize(e, root, canvas, img, ","))
     root.bind("<KeyPress-period>", lambda e: perform_resize(e, root, canvas, img, "."))
 

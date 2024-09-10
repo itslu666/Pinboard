@@ -15,3 +15,4 @@ def change_window(canvas, root):
 
     root.attributes("-topmost", settings['always_on_top'])
     root.configure(background=settings['background_color'])
+    

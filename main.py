@@ -49,7 +49,10 @@ def main():
         settings = {
             "border_color": "black",
             "background_color": "white",
-            "always_on_top": True
+            "always_on_top": True,
+            "close_key": "q",
+            "open_key": "KeyPress-plus",
+            "reset_size_key": "b"
         }
 
         with open(settings_file, 'w') as file:

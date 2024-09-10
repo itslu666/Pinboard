@@ -15,9 +15,11 @@ Pinboard is a simple Python Tkinter app that can pin your images to your desktop
 - [x] Add file import
 - [x] Add resize window feature
 - [ ] Fix canvas bounds
-- [ ] Add setting to change add/close key
+- [x] Add setting to change add/close key
 - [ ] Add text to desktop
 - [x] Add disable always on top setting
+- [ ] Add options (add/close/reset-size) to the window
+- [ ] Add option to hide in window options
 
 
 ---
@@ -95,10 +97,14 @@ Press `b` to reset the image size
 
 ---
 ### Settings:
-Option  |   Value   |   Effect
---  |   --  |   --
-border_color    |   any color   |   Changes the color of the pin border
-background_color    |   any color   |   Changes the background color when image panned out of bounds
-always_on_top   |   True/False  |   wether the pin should be always on top or not
+Option  |   Value   |   Effect  |   Example |   Default
+--  |   --  |   --  |   --  |   ---
+border_color    |   any color   |   Changes the color of the pin border |   red/#ff0000 |   black
+background_color    |   any color   |   Changes the background color when image panned out of bounds    |   red/#ff0000 |   white
+always_on_top   |   True/False  |   wether the pin should be always on top or not   |   true    |   true
+close_key   |   any key symbol    |   defines the closing key |   w   |   q
+open_key    |   any key symbol    |   defines the opening key |   p   | KeyPress-plus
+reset_size_key  |   any key symbol  |   defines the reset size key  |   Control-z   |   b
 
-Settings file is in `~/.config/pinboard/settings.json` after building
+Settings file is in `~/.config/pinboard/settings.json` after building\
+For the keybinds, you can find a list of keysyms here: http://www.tcl.tk/man/tcl8.4/TkCmd/keysyms.htm
