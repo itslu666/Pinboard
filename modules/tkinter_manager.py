@@ -1,4 +1,5 @@
 import tkinter as tk
+import customtkinter as ctk
 from PIL import ImageTk, Image
 from modules import settings_loader, image_handler
 import sys
@@ -59,6 +60,21 @@ def make_window(open_windows, wid, hgt, img, win=None):
     root.bind("<KeyPress-period>", lambda e: perform_resize(e, root, canvas, img, "."))
 
     settings_loader.change_window(canvas, root)
+
+    # make buttons if enabled
+    if settings['buttons']:
+        add_button = ctk.CTkButton(canvas, text=" ", command=lambda: root.event_generate(f"<{settings['open_key']}>"))
+        close_button = ctk.CTkButton(canvas, text=" ", command=lambda: root.event_generate(f"<{settings['close_key']}>"))
+        increase_size_button = ctk.CTkButton(canvas, text="+", command=lambda: root.event_generate("<KeyPress-period>"))
+        decrease_size_button = ctk.CTkButton(canvas, text="-", command=lambda: root.event_generate("<KeyPress-comma>"))
+        reset_size_button = ctk.CTkButton(canvas, text=" ", command=lambda: root.event_generate(f"{settings['reset_size_key']}"))
+
+        add_button.pack(anchor="ne")
+        close_button.pack(anchor="ne")
+        increase_size_button.pack(anchor="ne")
+        decrease_size_button.pack(anchor="ne")
+        reset_size_button.pack(anchor="ne")
+
     if win.winfo_name() == 'tk':
         win.mainloop()
 

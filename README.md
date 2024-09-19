@@ -103,6 +103,7 @@ always_on_top   |   True/False  |   wether the pin should be always on top or no
 close_key   |   any key symbol    |   defines the closing key |   w   |   q
 open_key    |   any key symbol    |   defines the opening key |   p   | KeyPress-plus
 reset_size_key  |   any key symbol  |   defines the reset size key  |   Control-z   |   b
+buttons |   True/False  |   Shows shortcut buttons  |   true    |   false
 
 Settings file is in `~/.config/pinboard/settings.json` after building\
 For the keybinds, you can find a list of keysyms here: http://www.tcl.tk/man/tcl8.4/TkCmd/keysyms.htm

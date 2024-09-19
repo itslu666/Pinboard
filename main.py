@@ -52,7 +52,8 @@ def main():
             "always_on_top": True,
             "close_key": "q",
             "open_key": "KeyPress-plus",
-            "reset_size_key": "b"
+            "reset_size_key": "b",
+            "buttons": True
         }
 
         with open(settings_file, 'w') as file:
