@@ -24,7 +24,7 @@ create_config_dir:
 
 build_executable:
 	$(PYINSTALLER) --onefile --hidden-import=PIL._tkinter_finder $(SRC_DIR)/main.py --distpath $(DIST_DIR) --name $(EXECUTABLE_NAME)
-	@echo "Building done."
+	@echo "Building done. Execute pinboard --create-config to create default config."
 
 clean:
 	rm -rf $(DIST_DIR)

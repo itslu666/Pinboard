@@ -15,8 +15,6 @@ def make_window(open_windows, wid, hgt, img, win=None):
     # check if windows or linux
     if platform.system() == "Linux":
         root.wm_attributes('-type', 'splash')
-    else:
-        root.overrideredirect(True)
 
     root.attributes('-topmost', True)
     
@@ -63,17 +61,17 @@ def make_window(open_windows, wid, hgt, img, win=None):
 
     # make buttons if enabled
     if settings['buttons']:
-        add_button = ctk.CTkButton(canvas, text=" ", command=lambda: root.event_generate(f"<{settings['open_key']}>"))
-        close_button = ctk.CTkButton(canvas, text=" ", command=lambda: root.event_generate(f"<{settings['close_key']}>"))
-        increase_size_button = ctk.CTkButton(canvas, text="+", command=lambda: root.event_generate("<KeyPress-period>"))
-        decrease_size_button = ctk.CTkButton(canvas, text="-", command=lambda: root.event_generate("<KeyPress-comma>"))
-        reset_size_button = ctk.CTkButton(canvas, text=" ", command=lambda: root.event_generate(f"{settings['reset_size_key']}"))
+        add_button = ctk.CTkButton(canvas, text=" ", font=("", 20), width=50, command=lambda: root.event_generate(f"<{settings['open_key']}>"))
+        close_button = ctk.CTkButton(canvas, text=" ", font=("", 20), width=50, command=lambda: root.event_generate(f"<{settings['close_key']}>"))
+        increase_size_button = ctk.CTkButton(canvas, text="+", font=("", 20), width=50, command=lambda: root.event_generate("<KeyPress-period>"))
+        decrease_size_button = ctk.CTkButton(canvas, text="-", font=("", 20), width=50, command=lambda: root.event_generate("<KeyPress-comma>"))
+        reset_size_button = ctk.CTkButton(canvas, text=" ", font=("", 20), width=50, command=lambda: root.event_generate(f"{settings['reset_size_key']}"))
 
-        add_button.pack(anchor="ne")
-        close_button.pack(anchor="ne")
-        increase_size_button.pack(anchor="ne")
-        decrease_size_button.pack(anchor="ne")
-        reset_size_button.pack(anchor="ne")
+        add_button.pack(anchor="ne", pady=(0, 5))
+        close_button.pack(anchor="ne", pady=5)
+        increase_size_button.pack(anchor="ne", pady=5)
+        decrease_size_button.pack(anchor="ne", pady=5)
+        reset_size_button.pack(anchor="ne", pady=(5, 0))
 
     if win.winfo_name() == 'tk':
         win.mainloop()

@@ -53,7 +53,7 @@ def main():
             "close_key": "q",
             "open_key": "KeyPress-plus",
             "reset_size_key": "b",
-            "buttons": True
+            "buttons": False
         }
 
         with open(settings_file, 'w') as file:
