@@ -10,7 +10,10 @@ Pinboard is a simple Python Tkinter app that can pin your images to your desktop
 - Zoom into images
 - Pan images inside the window
 - Resize images
-- show/hide shortcut buttons
+- Show/hide shortcut buttons
+
+### TODO:
+- Add rotation
 
 ---
 ### Installation
@@ -59,7 +62,7 @@ Optional cleaning (removes `dist` too):
 ---
 ### Uninstalling
     make uninstall
-(don't forget to remove the executable in /usr/bin/pinboard if you moved it)
+(Don't forget to remove the executable in /usr/bin/pinboard if you moved it)
 
 ---
 ### Usage:
@@ -91,10 +94,10 @@ Option  |   Value   |   Effect  |   Example |   Default
 --  |   --  |   --  |   --  |   ---
 border_color    |   any color   |   Changes the color of the pin border |   red/#ff0000 |   black
 background_color    |   any color   |   Changes the background color when image panned out of bounds    |   red/#ff0000 |   white
-always_on_top   |   True/False  |   wether the pin should be always on top or not   |   true    |   true
-close_key   |   any key symbol    |   defines the closing key |   w   |   q
-open_key    |   any key symbol    |   defines the opening key |   p   | KeyPress-plus
-reset_size_key  |   any key symbol  |   defines the reset size key  |   Control-z   |   b
+always_on_top   |   True/False  |   Wether the pin should be always on top or not   |   true    |   true
+close_key   |   any key symbol    |   Defines the closing key |   w   |   q
+open_key    |   any key symbol    |   Defines the opening key |   p   | KeyPress-plus
+reset_size_key  |   any key symbol  |   Defines the reset size key  |   Control-z   |   b
 buttons |   True/False  |   Shows shortcut buttons  |   true    |   false
 
 Settings file is in `~/.config/pinboard/settings.json` after first execution\
