@@ -12,6 +12,7 @@ Pan the image with mouswheel click
 Zoom the image with scroll
 Resize the image with right click and drag
 
+default keybinds:
 Press + to add another image from clipboard
 Press q to close the selected image
 Press , to proportionally decrease image size

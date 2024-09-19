@@ -1,5 +1,5 @@
 # Pinboard
-Pinboard is a simple Python Tkinter app that can pin your images to your desktop and more.
+Pinboard is a simple Python Tkinter app that can pin your images to your desktop.
 
 ### Features
 - Pin images to desktop
@@ -10,15 +10,7 @@ Pinboard is a simple Python Tkinter app that can pin your images to your desktop
 - Zoom into images
 - Pan images inside the window
 - Resize images
-
-### TODO:
-- [x] Add file import
-- [x] Add resize window feature
-- [x] Add setting to change add/close key
-- [x] Add disable always on top setting
-- [x] Add options (add/close/reset-size) to the window
-- [x] Add option to hide in window options
-
+- show/hide shortcut buttons
 
 ---
 ### Installation
@@ -105,5 +97,5 @@ open_key    |   any key symbol    |   defines the opening key |   p   | KeyPress
 reset_size_key  |   any key symbol  |   defines the reset size key  |   Control-z   |   b
 buttons |   True/False  |   Shows shortcut buttons  |   true    |   false
 
-Settings file is in `~/.config/pinboard/settings.json` after building\
+Settings file is in `~/.config/pinboard/settings.json` after first execution\
 For the keybinds, you can find a list of keysyms here: http://www.tcl.tk/man/tcl8.4/TkCmd/keysyms.htm
