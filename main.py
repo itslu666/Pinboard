@@ -11,7 +11,12 @@ def main():
     if not os.path.isfile(settings_file):
         settings = {
                 "border_color": "black",
-                "background_color": "white"
+                "background_color": "white",
+                "always_on_top": True,
+                "close_key": "q",
+                "open_key": "KeyPress-plus",
+                "reset_size_key": "b",
+                "buttons": False
             }
         with open(settings_file, 'w') as file:
             json.dump(settings, file, indent=4)
