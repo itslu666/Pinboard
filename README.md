@@ -103,3 +103,8 @@ buttons |   True/False  |   Shows shortcut buttons  |   true    |   false
 
 Settings file is in `~/.config/pinboard/settings.json` after first execution\
 For the keybinds, you can find a list of keysyms here: http://www.tcl.tk/man/tcl8.4/TkCmd/keysyms.htm
+
+---
+Tested on:\
+Windows\
+Arch Linux X11/Wayland
