@@ -109,12 +109,21 @@ def make_window(open_windows, wid, hgt, img, win=None):
             width=50,
             command=lambda: root.event_generate(f"{settings['reset_size_key']}"),
         )
+        rotate_left_button = ctk.CTkButton(
+            canvas,
+            text=" ",
+            font=("", 20),
+            width=50,
+            command=lambda: root.event_generate("<KeyPress-r>"),
+        )
+        rotate_right_button = ...
 
         add_button.pack(anchor="ne", pady=(0, 5))
         close_button.pack(anchor="ne", pady=5)
         increase_size_button.pack(anchor="ne", pady=5)
         decrease_size_button.pack(anchor="ne", pady=5)
-        reset_size_button.pack(anchor="ne", pady=(5, 0))
+        reset_size_button.pack(anchor="ne", pady=5)
+        rotate_left_button.pack(anchor="ne", pady=(5, 0))
 
     if win.winfo_name() == "tk":
         win.mainloop()
@@ -238,7 +247,7 @@ def rotate(e, canvas, root):
     canvas.img_tk = ImageTk.PhotoImage(canvas.img)
     canvas.create_image(canvas.img_x, canvas.img_y, anchor=tk.NW, image=canvas.img_tk)
 
-    # get dimensions
+    # set new dimensions
     width = root.winfo_width()
     height = root.winfo_height()
     root.geometry(f"{height}x{width}")
