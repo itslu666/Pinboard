@@ -241,4 +241,4 @@ def rotate(e, canvas, root):
     # get dimensions
     width = root.winfo_width()
     height = root.winfo_height()
-    root.geometry(f"{width}x{height}")
+    root.geometry(f"{height}x{width}")
